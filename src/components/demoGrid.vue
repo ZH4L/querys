@@ -1,17 +1,18 @@
 <template>
 	<div class="wrapper">
+		<layer :layer="layer" :content="'发布未结束'"></layer>
 		<table class="content">
 			<thead>
 				<tr>
 					<th class="title">标题</th>
-					<th class="time">时间</th>
+					<th class="time">截止时间</th>
 					<th class="status">状态</th>
 					<th class="opera">操作</th>
 					<th ><router-link to="/create"><button class="btn">+ 新建问卷</button></router-link ></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr is="query" v-for="(ques,index) in querys" :ques="ques" :i="index" :selectAll="checked" @edit="edit" @delete="deleteq"></tr>
+				<tr is="query" v-for="(ques,index) in querys" :ques="ques" :i="index" :selectAll="checked" @edit="edit" @delete="deleteq" @result="result"></tr>
 			</tbody>
 			<tfoot>
 				<tr>
@@ -24,18 +25,27 @@
 <script>
 	import Query from './query.vue'
 	import {querys,router} from '../main.js'
+	import layer from './layer.vue'
 	export default{
 		name:'demoGrid',
-		components:{'query':Query},
+		components:{'query':Query,'layer':layer},
 		data(){
 			return{
 				checked:false,
-				querys:querys
+				querys:querys,
+				layer:{show:false}
 			}
 		},
 		methods:{
 			edit(i){
 				router.push({path:'/edit',query:{index:i}})
+			},
+			result(i){
+				if(this.querys[i].status=='已结束'){
+				router.push({path:'/result',query:{index:i}})	
+				} else{
+					this.layer.show=true;
+				}
 			},
 			deleteq(i){
 				querys.splice(i,1)

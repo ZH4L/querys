@@ -6,6 +6,7 @@
 		<td colspan="2" class="opera">
 			<button class="btn btn-sm" @click="$emit('edit',i)">编辑</button>
 			<button class="btn btn-sm" @click="$emit('delete',i)">删除</button>
+			<button class="btn btn-sm" @click="$emit('result',i)">查看结果</button>
 		</td>
 	</tr>
 </template>

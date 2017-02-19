@@ -1,14 +1,14 @@
 <template>
+<transition name="bounce" enter-active-class="animated swing"leave-active-class="animated zoomOut">
 	<div class="m-layer z-show" v-if="layer.show"><table><tbody><tr><td>
     <article class="lywrap">
 	    <header class="lytt"><h2 class="u-tt">提示</h2><span class="lyclose" @click="cancle">×</span></header>
 	    <section class="lyct">
-	        <p>是否发布问卷?</p>
-	        <p>(此问卷截止日期为{{date}})</p>
+	        <p>{{content}}</p>       
 	    </section>
 	    <footer class="lybt">
 	        <div class="lyother">
-	            
+	   		<p>{{foot}}</p>
 	        </div>
 	        <div class="lybtns">
 	            <button type="button" class="u-btn" @click.stop="check">确定</button>
@@ -17,17 +17,18 @@
 	    </footer>
     </article></td></tr></tbody></table>
 </div>
+</transition>
 </template>
 <script>
 	export default{
-		props:['layer','date'],
+		props:['layer','content','foot'],
 		methods:{
 			cancle(){
 				this.layer.show=false;
 			},
 			check(){
 				this.layer.show=false;
-				this.$emit('public')
+				this.$emit('confirm')
 			}
 		},
 	}

@@ -7,7 +7,11 @@
   <body>
     <div id="demo">
       <headbar></headbar>
-      <router-view></router-view>
+      <transition     name="transitionName"
+    enter-active-class="animated rotateInDownRight"
+    leave-active-class="animated zoomOutDown" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </div>
     <script src="/dist/build.js"></script>
   </body>
