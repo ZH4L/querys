@@ -9,13 +9,9 @@
 	3.src文件夹中为源码。main.js为主js，app.vue为主vue，components文件夹中为相关组件。
 
 运行步骤：
-	1.输入命令cnpm insall安装相关依赖包，
-	2.输入命令npm run dev即可。
+	1.输入命令cnpm insall安装相关依赖包。(cnpm为淘宝npm镜像，可以通过指令安装：npm install -g cnpm --registry=https://registry.npm.taobao.org)
+	2.输入命令npm run dev运行本地服务器即可。
 
 附加说明：
 	路由系统用了vue-router中的history模式。
 	如要打包，请输入命令npm run build
-
-
-
-
